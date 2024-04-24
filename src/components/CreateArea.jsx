@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 function CreateArea(props) {
+
+  const [isExpanded, setExpanded] = useState(false);
+
   const[note, setnote] = useState({title: "", content: ""});
   
   function handleChange(event){
@@ -22,12 +26,16 @@ function CreateArea(props) {
     })
     event.preventDefault();
   }
+
+  function expand(){
+    setExpanded(true);
+  }
   return (
     <div>
       <form>
-        <input name="title" value={note.title} placeholder="Title"  onChange={handleChange}/>
-        <textarea name="content" value={note.content} placeholder="Take a note..." rows="3" onChange={handleChange}/>
-        <button onClick={submitNote} >Add</button>
+        {isExpanded ? <input name="title" value={note.title} placeholder="Title"  onChange={handleChange}/> : null}
+        <textarea onClick={expand} name="content" value={note.content} placeholder="Take a note..." rows={isExpanded ? 3 : 1} onChange={handleChange}/>
+        <button onClick={submitNote} ><AddBoxIcon/></button>
       </form>
     </div>
   );
