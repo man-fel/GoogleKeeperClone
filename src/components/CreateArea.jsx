@@ -16,13 +16,17 @@ function CreateArea(props) {
 
   function submitNote(event){
     props.onAdd(note);
-    event.preventefault();
+    setnote({
+      title: "", 
+      content: ""
+    })
+    event.preventDefault();
   }
   return (
     <div>
       <form>
-        <input name="title" value={note.title} placeholder="Title" value={inputValue1} onChange={handleChange}/>
-        <textarea name="content" value={note.content} placeholder="Take a note..." rows="3" value={inputValue2} onChange={handleChange}/>
+        <input name="title" value={note.title} placeholder="Title"  onChange={handleChange}/>
+        <textarea name="content" value={note.content} placeholder="Take a note..." rows="3" onChange={handleChange}/>
         <button onClick={submitNote} >Add</button>
       </form>
     </div>
